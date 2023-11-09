@@ -2,9 +2,9 @@ const express = require('express')
 
 const app = express()
 
-app.get('/',function(req,res){
-    res.send('Hello World')
-})
+const router = require('./src/routers')
+
+app.use(router)
 
 
 app.listen(3000, ()=>{
