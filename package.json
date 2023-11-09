@@ -1,0 +1,23 @@
+{
+  "name": "taller",
+  "version": "1.0.0",
+  "description": "taller de vehiculos",
+  "main": "index.js",
+  "scripts": {
+    "dev":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PipeGom/backend-dlloWeb.git"
+  },
+  "author": "felipe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PipeGom/backend-dlloWeb/issues"
+  },
+  "homepage": "https://github.com/PipeGom/backend-dlloWeb#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
