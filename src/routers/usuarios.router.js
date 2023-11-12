@@ -12,4 +12,7 @@ router.post("/",_userController.createUser)
 router.put("/:id",_userController.updateUser)
 router.delete("/:id",_userController.deleteUser)
 
+// Archivos para el usuario
+router.post("/:id/documents", _userController.createDocumentUser)
+
 module.exports = router

@@ -1,0 +1,8 @@
+{
+    "database":{
+        "name":"Taller_project",
+        "user":"",
+        "password":"",
+        "host":"taller.kd6pcvu.mongodb.net"
+    }
+}
