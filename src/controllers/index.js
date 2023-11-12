@@ -1,9 +1,9 @@
-/// Va recibir los req y response
+const TasksController = require('./tasks.controller');
+const UsersController = require('./users.controller');
+const AuthController = require('./auth.controller');
 
-const UserController = require('./user.controller')
-
-
-// sirve para editar los nombres cuando son muy largos 
 module.exports = {
-    UserController
+    TasksController,
+    UsersController,
+    AuthController
 }

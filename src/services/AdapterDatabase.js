@@ -1,21 +1,23 @@
-// Es para estandarizar si en el futuro se tienen mas servicios
-class IDatabase{
-    findAll(collectionName){
-        throw 'Implementar metodo'
-    }
-    findOne(collectionName,id){
-        throw "implementar metodo"
-    }
-    create(collectionName,payload){
-        throw "implementar el metodo"
-    }
-    update(collectionName,payload,id){
-        throw "implementar el metodo"
-    }
-    delete(collectionName,id){
-        throw "implementar el metodo"
-    }
 
+class IDatabase {
+  findAll(collectionName) {
+    throw "Implementar método";
+  }
+  findOne(collectionName, id) {
+    throw "Implementar método";
+  }
+  create(collectionName, payload) {
+    throw "Implementar método";
+  }
+  update(collectionName, payload, id) {
+    throw "Implementar método";
+  }
+  delete(collectionName, id) {
+    throw "Implementar método";
+  }
+  findByFilter(collectionName, filter) {
+    throw "Implementar método";
+  }
 }
 
-module.exports = {IDatabase};
+module.exports = { IDatabase };

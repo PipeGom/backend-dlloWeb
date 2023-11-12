@@ -1,12 +1,12 @@
 require("express");
-const User = require("../models/users");
+const Task = require("../models/Tasks");
 const { MongoService } = require("../services/MongoService");
 
-const colletion = "usuarios";
+const colletion = "tasks";
 const adapterDatabase = new MongoService();
 
-class userController {
-  
+class TasksController {
+  constructor() {}
 
   /**
    * PENDIENTE:
@@ -16,11 +16,11 @@ class userController {
    * @param {import('express').Request} req
    * @param {import('express').Response} res
    */
-  async createUser(req, res) {
+  async createTask(req, res) {
     try {
       let payload = req.body;
-      const user = new User(payload?.id, payload?.name, payload?.description);
-      user.valid();
+      const task = new Task(payload?.id, payload?.name, payload?.description);
+      task.valid();
       // saveData(PATH_DB, task.toJson());
       const response = await adapterDatabase.create(colletion, payload);
       payload.id = response.insertedId;
@@ -48,12 +48,12 @@ class userController {
    * @param {import('express').Request} req
    * @param {import('express').Response} res
    */
-  async updateUser(req, res) {
+  async updateTask(req, res) {
     try {
       let payload = req.body;
       const id = req.params.id;
-      const user = new User(payload?.id, payload?.name, payload?.description);
-      user.valid();
+      const task = new Task(payload?.id, payload?.name, payload?.description);
+      task.valid();
       // saveData(PATH_DB, task.toJson());
       const { modifiedCount: count } = await adapterDatabase.update(colletion, payload, id);
       if (count == 0) {
@@ -78,17 +78,17 @@ class userController {
    * @param {import('express').Request} req
    * @param {import('express').Response} res
    */
-  async getUser(req, res) {
+  async getTask(req, res) {
     try {
       const id = req.params.id;
-      const user = await adapterDatabase.findOne(colletion, id);
-      if (!user) {
+      const task = await adapterDatabase.findOne(colletion, id);
+      if (!task) {
         throw { status: 404, message: "La tarea no se encontro." };
       }
       res.status(200).json({
         ok: true,
         message: "Tarea consultada",
-        info: user,
+        info: task,
       });
     } catch (error) {
       console.error(error);
@@ -104,13 +104,13 @@ class userController {
    * @param {import('express').Request} req
    * @param {import('express').Response} res
    */
-  async getUsers(req, res) {
+  async getTasks(req, res) {
     try {
-      const users = await adapterDatabase.findAll(colletion);
+      const tasks = await adapterDatabase.findAll(colletion);
       res.status(200).json({
         ok: true,
-        message: "Usuarios consultados",
-        info: users,
+        message: "Tareas consultadas",
+        info: tasks,
       });
     } catch (error) {
       console.log(error);
@@ -126,7 +126,7 @@ class userController {
    * @param {import('express').Request} req
    * @param {import('express').Response} res
    */
-  async deleteUser(req, res) {
+  async deleteTask(req, res) {
     try {
       const id = req.params.id;
       // deletedCount es la variable que destructuro: count el nombre de la variable que voy a usar
@@ -136,7 +136,7 @@ class userController {
       }
       res.status(200).json({
         ok: true,
-        message: "Usuario eliminado",
+        message: "Tarea eliminada",
         info: {},
       });
     } catch (error) {
@@ -152,7 +152,7 @@ class userController {
    * @param {import('express').Request} req
    * @param {import('express').Response} res
    */
-  async createDocumentUser(req, res) {
+  async createDocumentTask(req, res) {
     try {
       // id de la tarea
       const id = req.params.id;
@@ -163,7 +163,7 @@ class userController {
         document.mv(`./docs/${document.md5}${document.name}`)
         res.status(200).json({
           ok: true,
-          message: "Documento del usuario guardado",
+          message: "Documento de la tarea guardado",
           info: 'PENDIENTE RETORNAR Y GUARDAR URL',
         });
       }
@@ -179,4 +179,4 @@ class userController {
   }
 }
 
-module.exports = userController;
+module.exports = TasksController;

@@ -1,7 +1,10 @@
+
+
+
 class IConfig {
-    get(name){
-        throw 'implementar metodo'
-    }
+   get(name){
+    throw 'Implementar método'
+   }
 }
 
 module.exports = IConfig

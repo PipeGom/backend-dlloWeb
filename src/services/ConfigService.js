@@ -1,9 +1,10 @@
 const IConfig = require("./AdapterConfig");
-const config = require('config')
+const config = require("config");
 
-class ConfigService extends IConfig{
-    get(name){
-        return config.get(name);
-    }
+class ConfigService extends IConfig {
+  get(name) {
+    return config.get(name);
+  }
 }
-module.exports = ConfigService;
+
+module.exports = ConfigService

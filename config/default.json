@@ -4,5 +4,7 @@
         "user":"",
         "password":"",
         "host":"taller.kd6pcvu.mongodb.net"
-    }
+    },
+    "api_host":"http://localhost:3001/",
+    "port":3001
 }
