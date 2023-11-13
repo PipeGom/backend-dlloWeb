@@ -1,8 +1,15 @@
 require('express')
+const { MongoService } = require("../services/MongoService");
+const Car = require("../models/cars");
 
 const PATH_DB = "./src/db/_tasks.json";
+this.adapterDatabase = new MongoService();
+
 class CarsController {
 
+    constructor(){
+        
+    }
     /**
      * 
      * @param {import('express').Request} req 
@@ -80,13 +87,14 @@ class CarsController {
      * @param {import('express').Request} req 
      * @param {import('express').Respose} res 
      */
-    getCars(req, res){
+    async getCars(req, res){
         try{
-            const cars = getData(PATH_DB);
-            res.status(201).json({
-            ok: true,
-            message: "Autos consultados",
-            info: cars,
+            
+            const cars = await adapterDatabase.excuteQuery('cars');
+            res.status(200).json({
+                ok: true,
+                message: "Autos consultados",
+                info: cars,
         })
         } catch (error){
             
