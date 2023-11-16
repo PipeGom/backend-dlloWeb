@@ -2,7 +2,7 @@ const express = require("express")
 
 const router = express.Router()
 const { CarsController} = require("../controllers");
-const _carscontroller = new CarsController
+const _carscontroller = new CarsController()
 
 
 router.get("/", _carscontroller.getCars)
