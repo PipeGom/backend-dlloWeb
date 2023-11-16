@@ -1,139 +1,66 @@
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const { IDatabase } = require("./AdapterDatabase");
-const ConfigService = require("./ConfigService");
+// Aqui se va hacer la conexion a la base de datos Mongo
 
-const config = new ConfigService();
+const {MongoClient}=require('mongodb')
+const {IDatabase}=require('./AdapterDatabase')
 
+// Retorna el cliente para conectarnos al mongo
 const getClient = () => {
-  const user = config.get("database.user");
-  const password = config.get("database.password");
-  const host = config.get("database.host");
-  const uri = `mongodb+srv://${user}:${password}@${host}/?retryWrites=true&w=majority`;
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
-  return client;
-};
 
-class MongoService extends IDatabase {
-  constructor() {
-    super();
-    console.log("Mongo Service");
-  }
-  async findAll(collectionName) {
-    const client = getClient();
-    try {
-      await client.connect();
-      const dbName = config.get("database.name");
-      const database = client.db(dbName);
-      const collection = database.collection(collectionName);
-      const rows = await collection.find().toArray();
-      return rows;
-    } catch (error) {
-      console.error(error);
-      throw { success: false, message: "Error Mongo service" };
-    } finally {
-      await client.close();
-    }
-  }
+    //la uri se separa porque normalmente se tienen varios ambientes por lo tanto estos datos pueden cambiar
+    //
+    const user = 'luisfelipegogi44'
+    const password = 'Hola1234'
+    const host = 'taller.kd6pcvu.mongodb.net'
 
-  async findOne(collectionName, id) {
-    const _id = new ObjectId(id);
-    const client = getClient();
-    try {
-      await client.connect();
-      const dbName = config.get("database.name");
-      const database = client.db(dbName);
-      const collection = database.collection(collectionName);
-      const row = await collection.findOne({ _id });
-      return row;
-    } catch (error) {
-      console.error(error);
-      throw { success: false, message: "Error Mongo service" };
-    } finally {
-      await client.close();
-    }
-  }
+    // Se pone en template string `` para poder meter variables 
+    const uri = `mongodb+srv://${user}:${password}@${host}/?retryWrites=true&w=majority`;
 
-  async findByFilter(collectionName, filter) {
-    const client = getClient();
-    try {
-      await client.connect();
-      const dbName = config.get("database.name");
-      const database = client.db(dbName);
-      const collection = database.collection(collectionName);
-      const row = await collection.findOne(filter);
-      return row;
-    } catch (error) {
-      console.error(error);
-      throw { success: false, message: "Error Mongo service" };
-    } finally {
-      await client.close();
-    }
-  }
-
-  /**
-   * 
-   * @param {string} collectionName 
-   * @param {Object} payload 
-   * @returns 
-   */
-  async create(collectionName, payload) {
-    const client = getClient();
-    try {
-      await client.connect();
-      const dbName = config.get("database.name");
-      const database = client.db(dbName);
-      const collection = database.collection(collectionName);
-      const row = await collection.insertOne(payload);
-      return row;
-    } catch (error) {
-      console.error(error);
-      throw { success: false, message: "Error Mongo service" };
-    } finally {
-      await client.close();
-    }
-  }
-
-  async update(collectionName, payload, id) {
-    const _id = new ObjectId(id);
-    const client = getClient();
-    try {
-      await client.connect();
-      const dbName = config.get("database.name");
-      const database = client.db(dbName);
-      const collection = database.collection(collectionName);
-      const row = await collection.replaceOne({ _id }, payload);
-      return row;
-    } catch (error) {
-      console.error(error);
-      throw { success: false, message: "Error Mongo service" };
-    } finally {
-      await client.close();
-    }
-  }
-
-  async delete(collectionName, id) {
-    const _id = new ObjectId(id);
-    const client = getClient();
-    try {
-      await client.connect();
-      const dbName = config.get("database.name");
-      const database = client.db(dbName);
-      const collection = database.collection(collectionName);
-      const row = await collection.deleteOne({ _id });
-      return row;
-    } catch (error) {
-      console.error(error);
-      throw { success: false, message: "Error Mongo service" };
-    } finally {
-      await client.close();
-    }
-  }
+    // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+    const client = new MongoClient(uri, {
+        serverApi: {
+          version: ServerApiVersion.v1,
+          strict: true,
+          deprecationErrors: true,
+        }
+      });
+      // Con el cliente creado vamos a conectarnos y crear las acciones
+      return client;
 }
 
-module.exports = { MongoService };
+// conexion del cliente a la base de datos
+const executeQuery = async() => {
+    try{
+
+        const client = getClient() // se captura el cliente 
+        await client.connect();  // Nos conectamos 
+
+        // Ejecutar Comandos de insercion, actualizacion etc.
+
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    }catch(error){
+        // Aqui se capturan os posibles errores
+
+    }
+    finally{
+        // siempre se debe cerrar la conexion como buena practica
+        await client.close();
+    }
+}
+
+// la clase de mongo service va implementar La interfaz de
+class MongoService extends IDatabase{
+
+    // va retornar el execute query de mongo service 
+    executeQuery(){
+        return executeQuery()
+    }
+
+}
+
+// podemos exportar solo la funcion executeQuery
+module.exports = {
+    MongoService
+}
+

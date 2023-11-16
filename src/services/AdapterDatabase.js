@@ -1,23 +1,13 @@
+// Este archivo sirve de interfaz para que independiente del servicio se pueda utiliar las operaciones definidas 
+//O sea que no importara si se cambia de base de datos
+// En resumen nos permite estandarizar los servicios que sean agregados al proyecto 
+class IDatabase{
 
-class IDatabase {
-  findAll(collectionName) {
-    throw "Implementar método";
-  }
-  findOne(collectionName, id) {
-    throw "Implementar método";
-  }
-  create(collectionName, payload) {
-    throw "Implementar método";
-  }
-  update(collectionName, payload, id) {
-    throw "Implementar método";
-  }
-  delete(collectionName, id) {
-    throw "Implementar método";
-  }
-  findByFilter(collectionName, filter) {
-    throw "Implementar método";
-  }
+    executeQuery(){
+        throw 'implementar metodo'
+    }
+
 }
 
-module.exports = { IDatabase };
+// exportamos la clase Mongo Service
+module.exports = {IDatabase}
