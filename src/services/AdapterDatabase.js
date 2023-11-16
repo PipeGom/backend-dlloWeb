@@ -3,8 +3,20 @@
 // En resumen nos permite estandarizar los servicios que sean agregados al proyecto 
 class IDatabase{
 
-    executeQuery(){
+    findAll(collectionName){
         throw 'implementar metodo'
+    }
+    findOne(collectionName,id){
+        throw "implementar metodo"
+    }
+    create(collectionName,payload){
+        throw "implementar metodo"
+    }
+    update(collectionName,payload,id){
+        throw "implementar metodo"
+    }
+    delete(collectionName,payload,id){
+        throw "implementar metodo"
     }
 
 }
