@@ -1,6 +1,6 @@
 // Importar el task router 
 const TaskController = require('./tasks.controller')
-
+const ArticuloController = require('./articulo.controller');
 
 const CarsController = require('./cars.controller');
 
@@ -8,5 +8,6 @@ const CarsController = require('./cars.controller');
 // desde el otro lado la url, esto evita que al momento de importar el archivo la url sea demasiado larga 
 module.exports = {
     TaskController,
-    CarsController
+    CarsController,
+    ArticuloController
 }
