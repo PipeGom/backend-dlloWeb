@@ -32,6 +32,9 @@ router.post("/",_taskController.createTask)
 router.put("/:id",_taskController.updateTask)
 router.delete("/:id",_taskController.deleteTask)
 
+// Archivos a la tarea (imagenes)
+router.post("/:id/documents",_taskController.createDocumentTask)
+
 //se exporta la instancia
 
 module.exports = router
