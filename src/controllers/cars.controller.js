@@ -2,7 +2,7 @@ require('express')
 const { MongoService } = require("../services/MongoService");
 const Car = require("../models/cars");
 const { Collection } = require('mongodb');
-const PATH_DB = "./src/db/_tasks.json";
+
 
 const adapterDatabase = new MongoService();
 const collection = 'cars'
@@ -79,8 +79,7 @@ class CarsController {
     async getCar(req, res){
         try{
             const id = req.params.id
-
-            const car = await adapterDatabase.create(collection, id);
+            const car = await adapterDatabase.findOne(collection, id);
 
             
             if (!car){
@@ -154,7 +153,7 @@ class CarsController {
                 ok:true,
                 message:"Auto eliminado", //mensaje que pueda manipularse en el frontend
                 info:{}
-        })
+            })
         // clase 3 de oct min 30:52
             
             
