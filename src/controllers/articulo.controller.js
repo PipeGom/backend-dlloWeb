@@ -1,11 +1,11 @@
 require('express')
 const { MongoService } = require("../services/MongoService");
-const Car = require("../models/seguimiento");
+const Articulo = require("../models/Articulo");
 
 const PATH_DB = "./src/db/_tasks.json";
 this.adapterDatabase = new MongoService();
 
-class CarsController {
+class ArticuloController {
 
     constructor(){
         
@@ -15,12 +15,12 @@ class CarsController {
      * @param {import('express').Request} req 
      * @param {import('express').Respose} res 
      */
-    createSeguimiento(req, res){
+    createArticulo(req, res){
         try{
             const payload = req.body;
-            const car = new Car(payload?.id, payload?.id_auto, payload?.precio_reparacion, payload?.horas_reparacion)
-            car.valid();
-            saveData(PATH_DB, car.toStringJson());
+            const articulo = new Articulo(payload?.id, payload?.name, payload?.description)
+            articulo.valid();
+            saveData(PATH_DB, articulo.toStringJson());
 
             res.status(201).json({
                 ok: true,
@@ -41,7 +41,7 @@ class CarsController {
      * @param {import('express').Request} req 
      * @param {import('express').Respose} res 
      */
-    updateSeguimiento(req, res){
+    updateArticulo(req, res){
         try{
             res.status(201).json({
                 ok: true,
@@ -58,18 +58,18 @@ class CarsController {
      * @param {import('express').Request} req 
      * @param {import('express').Respose} res 
      */
-    getSeguimiento(req, res){
+    getArticulo(req, res){
         try{
             const id = req.params.id
-            const seguimientos = getData(PATH_DB)
-            const seguimiento = seguimientos.find(x =>x.id === id)
-            if (!seguimiento){
-                throw {status:404, message: 'No se encuentra el seguimiento'}
+            const inventario = getData(PATH_DB)
+            const articulo = inventario.find(x =>x.id === id)
+            if (!articulo){
+                throw {status:404, message: 'el articulo no se encontró'}
             }
             res.status(200).json({
                 ok: true,
-                message: "Seguimiento consultado",
-                info: seguimiento,
+                message: "Articulo encontrado",
+                info: car,
             })
 
         } catch (error){
@@ -87,14 +87,14 @@ class CarsController {
      * @param {import('express').Request} req 
      * @param {import('express').Respose} res 
      */
-    async getSeguimientos(req, res){
+    async getArticulos(req, res){
         try{
             
-            const seguimientos = await adapterDatabase.excuteQuery('seguimientos');
+            const inventario = await adapterDatabase.excuteQuery('inventario');
             res.status(200).json({
                 ok: true,
-                message: "Se obtuvieron los seguimientos",
-                info: seguimientos,
+                message: "Articulos consultados",
+                info: inventario,
         })
         } catch (error){
             
@@ -111,7 +111,7 @@ class CarsController {
      * @param {import('express').Request} req 
      * @param {import('express').Respose} res 
      */
-    deleteSeguimiento(req, res){
+    deleteArticulo(req, res){
         res.status(204).json({
             ok: true,
             message: "",
@@ -120,4 +120,4 @@ class CarsController {
     }
 }
 
-module.exports = SeguimietoController
+module.exports = ArticuloController
