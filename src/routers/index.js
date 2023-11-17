@@ -5,7 +5,7 @@ const router = express.Router()
 //Lo mas normal es que por crud se tenga un router
 // convencion el prural
 
-
+const publicRouter = require("./public.router")
 const taskRouter = require("./tasks.router")
 const userRouter = require("./users.router")
 const {AuthController} = require("../controllers")
@@ -25,8 +25,12 @@ router.use((req,res,next)=>{
 
 // forma 2. el [] es un handler que es un middleware, puedo agregar uno o varios
 router.post("/login",authController.login)
-router.use("/users",[AuthMiddleware],userRouter)
 
+router.use("/users/register/", publicRouter)
+
+
+
+router.post("/verify",authController.verifyToken)
 
 //forma 1. Asi se puede agregar el middleware a todas las rutas hacia abajo si quiero que se omita aguna debera estar antes del middleware
 router.use(AuthMiddleware)
@@ -39,9 +43,10 @@ router.use('/static/',express.static('docs'))
 // El use se usa para decirle al router que rutas va usar, para los metodos http
 router.use("/tasks",taskRouter)
 
+
 // Se exporta para usarse en el index principal
 
-router.post("/verify",authController.verifyToken)
+
 
 // Middleware 404 
 // recibe un callback o un handler para el handler tenemos:
