@@ -8,10 +8,10 @@ class Seguimiento{
     }
 
     valid(){
-        if (this.precio_reparacion || this.precio_reparacion.toString().length == 0 ) {  
+        if (!this.precio_reparacion || this.precio_reparacion?.toString().length == 0 ) {  
             throw {status:400, message:'Ingrese el precio de reparacion'};
     }
-        if (this.horas_reparacion || this.horas_reparacion.toString().length == 0 ) {  
+        if (!this.horas_reparacion || this.horas_reparacion?.toString().length == 0 ) {  
             throw {status:400, message:'Ingrese las horas de reparacion'};
     }
 }

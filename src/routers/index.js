@@ -17,6 +17,7 @@ router.use("/tasks",taskRouter)
 // Se exporta para usarse en el index principal
 
 const carsRouter = require("./cars.router")
+const seguimientoRouter = require("./seguimiento.router")
 
 
 
@@ -24,7 +25,7 @@ const carsRouter = require("./cars.router")
 
 
 router.use("/static/", express.static("docs"));
-
+router.use("/seguimiento", seguimientoRouter)
 router.use("/cars", carsRouter );
 
 

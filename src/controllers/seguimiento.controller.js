@@ -5,12 +5,11 @@ const { Collection } = require('mongodb');
 const PATH_DB = "./src/db/_tasks.json";
 
 const adapterDatabase = new MongoService();
-const collection = 'seguimientos'
+const collection = 'Seguimiento'
 
 class SeguimientoController {
 
     constructor(){
-        
     }
     /**
      * 
@@ -167,7 +166,6 @@ class SeguimientoController {
                 // sera devuelto si no sera devuelto el segundo 
                 message: error?.message || error,
             })
-            
         }
     }
 }
