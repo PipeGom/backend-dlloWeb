@@ -5,7 +5,7 @@ const router = express.Router()
 //Lo mas normal es que por crud se tenga un router
 // convencion el prural
 
-
+const carsRouter = require("./cars.router")
 const taskRouter = require("./tasks.router")
 const userRouter = require("./users.router")
 const {AuthController} = require("../controllers")
@@ -26,7 +26,7 @@ router.use((req,res,next)=>{
 // forma 2. el [] es un handler que es un middleware, puedo agregar uno o varios
 router.post("/login",authController.login)
 router.use("/users",[AuthMiddleware],userRouter)
-
+router.use("/cars", carsRouter );
 
 //forma 1. Asi se puede agregar el middleware a todas las rutas hacia abajo si quiero que se omita aguna debera estar antes del middleware
 router.use(AuthMiddleware)
