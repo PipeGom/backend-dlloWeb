@@ -3,7 +3,7 @@ const TaskController = require('./tasks.controller')
 const UserController = require('./users.controller')
 const AuthController = require('./auth.controller')
 const SeguimientoController = require('./seguimiento.controller');
-
+const CarsController = require('./cars.controller');
 
 
 // aqui vamos a guardar todos los controladores para que en el momento de importarlos
@@ -12,5 +12,6 @@ module.exports = {
     TaskController,
     UserController,
     AuthController,
-    SeguimientoController
+    SeguimientoController,
+    CarsController
 }
