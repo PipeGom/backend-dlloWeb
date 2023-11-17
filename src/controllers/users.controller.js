@@ -33,7 +33,7 @@ class UserController {
 
             let payload = req.body;
             // Enviamos el payload directamente al modelo
-            const user = new User(payload?.id, payload?.name, payload?.email, payload?.password,payload?.credential);
+            const user = new User(payload);
             //TODO finalizar la validacion de campos
             // TODO validar que un usuario exista antes de crearlo 
             user.valid()

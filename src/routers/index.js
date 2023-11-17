@@ -12,6 +12,7 @@ const seguimientoRouter = require("./seguimiento.router")
 const {AuthController} = require("../controllers")
 const AuthMiddleware = require("../middleware/auth.middleware")
 const authController = new AuthController()
+const publicRouter = require("./public.router")
 // const reportRouter = reuire("./reportsRouter")
 // Este index va tener todos los routers del sistema que seran exportados por los demas modulos en routers
 
@@ -26,6 +27,9 @@ router.use((req,res,next)=>{
 
 // forma 2. el [] es un handler que es un middleware, puedo agregar uno o varios
 router.post("/login",authController.login)
+router.use( "/users/register/", publicRouter);
+
+
 router.use("/users",[AuthMiddleware],userRouter)
 
 

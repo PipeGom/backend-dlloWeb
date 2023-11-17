@@ -4,7 +4,7 @@ class User {
 
     // ponemos todos los atributos que posee la tarea 
     // el parametro de entrada es un objeto que se va destructurar
-    constructor(id,name,email,password,credential){
+    constructor({id,name,email,password,credential}){
         this.id = id;
         this.name = name;
         this.email = email;
