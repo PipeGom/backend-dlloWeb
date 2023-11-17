@@ -1,6 +1,7 @@
 // Importar el task router 
 const TaskController = require('./tasks.controller')
 const UserController = require('./users.controller')
+const ArticuloController = require('./articulo.controller');
 const AuthController = require('./auth.controller')
 
 
@@ -10,5 +11,6 @@ const AuthController = require('./auth.controller')
 module.exports = {
     TaskController,
     UserController,
-    AuthController
+    AuthController,
+    ArticuloController
 }
