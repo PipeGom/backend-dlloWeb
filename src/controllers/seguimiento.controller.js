@@ -1,11 +1,13 @@
 require('express')
 const { MongoService } = require("../services/MongoService");
 const Car = require("../models/seguimiento");
-
+const { Collection } = require('mongodb');
 const PATH_DB = "./src/db/_tasks.json";
-this.adapterDatabase = new MongoService();
 
-class CarsController {
+this.adapterDatabase = new MongoService();
+const collection = 'seguimientos'
+
+class SeguimientoController {
 
     constructor(){
         
@@ -120,4 +122,4 @@ class CarsController {
     }
 }
 
-module.exports = SeguimietoController
+module.exports = SeguimientoController
