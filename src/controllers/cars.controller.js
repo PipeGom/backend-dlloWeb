@@ -79,7 +79,7 @@ class CarsController {
         try{
             const id = req.params.id
 
-            const car = await adapterDatabase.create(collection, id);
+            const car = await adapterDatabase.findOne(collection, id);
 
             
             if (!car){
