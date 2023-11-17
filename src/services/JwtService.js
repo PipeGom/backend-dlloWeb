@@ -11,7 +11,12 @@ const createToken = (payload) =>{
 
 // decodifica y verifica si el token es correcto
 const verifyToken = (token) =>{
-    return jwt.verify(token,SECRET);
+    try {
+        return jwt.verify(token,SECRET);
+    } catch (error) {
+        throw{ok:false, info:error};
+    }
+   
 }
 
 module.exports = {createToken, verifyToken}
