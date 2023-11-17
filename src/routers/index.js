@@ -8,7 +8,7 @@ const router = express.Router()
 const carsRouter = require("./cars.router")
 const taskRouter = require("./tasks.router")
 const userRouter = require("./users.router")
-const seguimientoRouter = require("./seguimiento.router")
+const articuloRouter = require("./articulo.router")
 const {AuthController} = require("../controllers")
 const AuthMiddleware = require("../middleware/auth.middleware")
 const authController = new AuthController()
@@ -31,6 +31,9 @@ router.use( "/users/register/", publicRouter);
 
 
 router.use("/users",[AuthMiddleware],userRouter)
+router.use("/seguimiento", seguimientoRouter)
+router.use("/cars", carsRouter );
+router.use("/inventario", articuloRouter)
 
 
 router.post("/verify",authController.verifyToken)
