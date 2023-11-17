@@ -31,3 +31,6 @@ app.listen(PORT,()=>{
 })
 
 // clase del 17 oct 35 minuto
+
+
+// Del index a la ruta de la ruta al controllador y del controlador a los servicios
