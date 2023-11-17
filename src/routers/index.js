@@ -5,7 +5,6 @@ const router = express.Router()
 //Lo mas normal es que por crud se tenga un router
 // convencion el prural
 
-
 const taskRouter = require("./tasks.router")
 // const userRouter = require("./users.router")
 // const reportRouter = reuire("./reportsRouter")

@@ -1,16 +1,22 @@
 class Car{
 
-    constructor(id, name, description){
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    constructor(id, cedula, numero,  correo, direccion, modelo, marca, placa, descripcion){
+        this.nombre = id;
+        this.cedula = cedula;
+        this.numero = numero;
+        this.correo = correo;
+        this.direccion = direccion;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.placa = placa;
+        this.descripcion = descripcion
     }
 
     valid(){
-        if (!this.id || this.id?.toString().length == 0 ) {  
-            throw {status:400, message:'El id  es obligatorio'};
-    }
-        if (!this.name || this.name?.toString().length == 0 ) {  
+    //     if (!this.id || this.id?.toString().length == 0 ) {  
+    //         throw {status:400, message:'El id  es obligatorio'};
+    // }
+        if (!this.nombre || this.nombre?.toString().length == 0 ) {  
             throw {status:400, message:'El name  es obligatorio'};
     }
     }
@@ -18,9 +24,15 @@ class Car{
 
     toJson(){
         return { 
-            "id": this.id,
-            "name": this.name,
-            "description": this.description,
+            "nombre": this.nombre,
+            "cedula": this.cedula,
+            "numero": this.numero,
+            "correo": this.correo,
+            "direccion": this.direccion,
+            "modelo": this.modelo,
+            "marca": this.marca,
+            "placa": this.placa,
+            "descripcion": this.descripcion
         };
     }
 }
