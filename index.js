@@ -1,11 +1,14 @@
 const express = require('express')
 const fileUpload = require('express-fileupload');
+const cors = require('cors')
 
 const app = express()
 
 
 // Permite que el req contenga un json y este pueda ser leido en el back 
 app.use(express.json());
+// que metodos bloquea 
+app.use(cors());
 
 // esto nos permite acceder a las imagenes en el request 
 //y puedo ponerle limitees , la direccion de la carpte temporal

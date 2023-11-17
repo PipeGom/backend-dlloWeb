@@ -20,7 +20,7 @@ const AuthMiddleware  =(req,res,next)=>{
         //hacemos un split de la autorization
         const {authorization} = req.headers;
         // es un string de un espacio porque es de la forma bearer token
-        const token = authorization.split(' ')[1]
+        const token = authorization?.split(' ')[1]
         console.log(token);
         // este es el token del usuario que esta pasando por los headers
         const user = verifyToken(token);
