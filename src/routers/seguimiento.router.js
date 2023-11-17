@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const SeguimientoController = require('../controllers/seguimiento.controller');
 
-const seguimientoController = new SeguimientoController();
+const SeguimientoController = new SeguimientoController();
 
-router.get('/', seguimientoController.getAll);
-router.post('/', seguimientoController.create);
-router.delete('/:id', seguimientoController.delete);
-router.put('/:id', seguimientoController.update);
+router.get("/", seguimientoController.getSeguimientos)
+router.get("/:id", seguimientoController.getSeguimiento)
+router.post('/', seguimientoController.createSeguimiento);
+router.delete('/:id', seguimientoController.deleteSeguimiento);
+router.put('/:id', seguimientoController.updateSeguimiento);
 
 module.exports = router;
