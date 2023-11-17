@@ -2,6 +2,7 @@
 const TaskController = require('./tasks.controller')
 const UserController = require('./users.controller')
 const AuthController = require('./auth.controller')
+const SeguimientoController = require('./seguimiento.controller');
 
 
 
@@ -10,5 +11,6 @@ const AuthController = require('./auth.controller')
 module.exports = {
     TaskController,
     UserController,
-    AuthController
+    AuthController,
+    SeguimientoController
 }
