@@ -5,7 +5,7 @@ const router = express.Router()
 //Lo mas normal es que por crud se tenga un router
 // convencion el prural
 
-
+const carsRouter = require("./cars.router")
 const taskRouter = require("./tasks.router")
 const userRouter = require("./users.router")
 const articuloRouter = require("./articulo.router")
