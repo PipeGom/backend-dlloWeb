@@ -9,18 +9,18 @@ class Seguimiento{
 
     valid(){
         if (this.precio_reparacion || this.precio_reparacion.toString().length == 0 ) {  
-            throw ({status:400, message:'Ingrese el precio de reparacion'});
+            throw {status:400, message:'Ingrese el precio de reparacion'};
     }
         if (this.horas_reparacion || this.horas_reparacion.toString().length == 0 ) {  
-            throw ({status:400, message:'Ingrese las horas de reparacion'});
+            throw {status:400, message:'Ingrese las horas de reparacion'};
     }
 }
     toJson(){
         return { 
-            id: this.id,
-            id_auto: this.id_auto,
-            precio_reparacion: this.precio_reparacion,
-            horas_reparacion: this.horas_reparacion
+            "id": this.id,
+            "id_auto": this.id_auto,
+            "precio_reparacion": this.precio_reparacion,
+            "horas_reparacion": this.horas_reparacion
         };
     }
 }
