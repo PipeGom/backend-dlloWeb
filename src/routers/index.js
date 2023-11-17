@@ -18,6 +18,7 @@ router.use("/tasks",taskRouter)
 
 const carsRouter = require("./cars.router")
 const seguimientoRouter = require("./seguimiento.router")
+const articuloRouter = require("./articulo.router")
 
 
 
@@ -26,6 +27,7 @@ const seguimientoRouter = require("./seguimiento.router")
 
 router.use("/static/", express.static("docs"));
 router.use("/seguimiento", seguimientoRouter)
+router.use("/inventario", articuloRouter)
 router.use("/cars", carsRouter );
 
 

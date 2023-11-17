@@ -113,7 +113,7 @@ class ArticuloController {
             const inventario = await adapterDatabase.findAll(collection);
             res.status(200).json({
                 ok: true,
-                message: "Autos consultados",
+                message: "Articulos consultados",
                 info: inventario,
         })
         } catch (error){
@@ -131,7 +131,7 @@ class ArticuloController {
      * @param {import('express').Request} req 
      * @param {import('express').Respose} res 
      */
-    async deleteCar(req, res){
+    async deleteArticulo(req, res){
         try {
 
             // en los metodos get,post,put que se utilicen :parametro
@@ -145,7 +145,7 @@ class ArticuloController {
             // si no se borra nada deletedCount = 0 y renombramos la variable como count
             // deletedCount es la variable que destrctura: count el nombre de la variable que voy ausar 
             if (count = 0){
-                throw {status:404, message:' El auto no se encontro. '}
+                throw {status:404, message:' El articulo no se encontró. '}
             }
 
                 // para el delete 204, no responde ningun codigo
