@@ -1,5 +1,6 @@
 require('express')
 const User = require('../models/Users');
+const { generateHash } = require('../services/Bcrypt');
 const ConfigService = require('../services/ConfigService');
 const { MongoService } = require('../services/MongoService');
 
@@ -36,6 +37,10 @@ class UserController {
             //TODO finalizar la validacion de campos
             // TODO validar que un usuario exista antes de crearlo 
             user.valid()
+
+            // si es valido guardamos la contrasena cifrada
+            payload.password = await generateHash(payload.password)
+            console.log('Password',payload.password);
 
             // debemos verificar que no exista en la base de datos 
             const userDb = await adapterDatabase.findByFilter(collection,{id:user.id});

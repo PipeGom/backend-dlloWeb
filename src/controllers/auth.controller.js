@@ -2,13 +2,13 @@ require('express')
 const { TokenExpiredError } = require('jsonwebtoken');
 const { createToken,verifyToken } = require('../services/JwtService');
 const { MongoService } = require('../services/MongoService');
+const { compareHash } = require('../services/Bcrypt');
 
 
-//ruta al json 
-const PATH_DB = "./src/db/_tasks.json";
+
 
 const adapterDatabase = new MongoService();
-const collection = 'users'
+const collection = 'users';
 
 class AuthController {
 
@@ -29,16 +29,21 @@ class AuthController {
             const {email,password}= req.body;
             //TODO validar si me estan enviando email y password
             
-            //Se busca el usuario por un filtro de email y password
-            const user = await adapterDatabase.findByFilter(collection,{email,password});
+            //Se busca el usuario por un filtro de email y password con el cifrado toca solobuscarlo por email
+            const user = await adapterDatabase.findByFilter(collection,{email});
+
+            // creamos una variable para comparar si la clave es igual o no
+            const passwordEquals = compareHash(password,user.password);
+            console.log(passwordEquals)
             // debemos borrar la contrasena para que no se envie en el token
-            delete user.password
-            if (!user){
+            // si no existe o el password es 
+            if (!user || passwordEquals == false){
                 throw {status:404, message:' el usuario no se encontro. '}
             }
 
             // CREAR token
             // se le pasa toda la info del usuario
+            delete user.password
             const token = createToken(user)
 
             res.status(200).json({

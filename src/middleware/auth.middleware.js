@@ -30,10 +30,10 @@ const AuthMiddleware  =(req,res,next)=>{
         next();
         
     } catch (error) {
-       res.status(500).json({
-        ok:false,
-        message:"Error Auth Middleware"
-       });
+    return res.status(500).json({
+                ok:false,
+                message:"Error Auth Middleware"
+            });
     }
 }
 module.exports = AuthMiddleware;

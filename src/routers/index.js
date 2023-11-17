@@ -23,12 +23,12 @@ router.use((req,res,next)=>{
     next();
 });
 
-// el [] es un handler que es un middleware, puedo agregar uno o varios
+// forma 2. el [] es un handler que es un middleware, puedo agregar uno o varios
 router.post("/login",authController.login)
 router.use("/users",[AuthMiddleware],userRouter)
 
 
-// Asi se puede agregar el middleware a todas las rutas hacia abajo si quiero que se omita aguna debera estar antes del middleware
+//forma 1. Asi se puede agregar el middleware a todas las rutas hacia abajo si quiero que se omita aguna debera estar antes del middleware
 router.use(AuthMiddleware)
 
 
