@@ -5,12 +5,11 @@ const { Collection } = require('mongodb');
 const PATH_DB = "./src/db/_tasks.json";
 
 const adapterDatabase = new MongoService();
-const collection = 'seguimientos'
+const collection = 'Seguimiento'
 
 class SeguimientoController {
 
     constructor(){
-        
     }
     /**
      * 
@@ -80,7 +79,7 @@ class SeguimientoController {
         try{
             const id = req.params.id
 
-            const seguimiento = await adapterDatabase.create(collection, id);
+            const seguimiento = await adapterDatabase.findOne(collection, id);
 
             
             if (!seguimiento){
@@ -88,7 +87,7 @@ class SeguimientoController {
             }
             res.status(200).json({
                 ok: true,
-                message: "seguimientp consultado",
+                message: "seguimiento consultado",
                 info: seguimiento,
             })
 
@@ -167,7 +166,6 @@ class SeguimientoController {
                 // sera devuelto si no sera devuelto el segundo 
                 message: error?.message || error,
             })
-            
         }
     }
 }
