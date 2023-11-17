@@ -2,6 +2,7 @@ require('express')
 const { MongoService } = require("../services/MongoService");
 const Seguimiento = require("../models/Seguimiento");
 const { Collection } = require('mongodb');
+const PATH_DB = "./src/db/_tasks.json";
 
 const adapterDatabase = new MongoService();
 const collection = 'seguimientos'
