@@ -4,7 +4,7 @@ const Car = require("../models/seguimiento");
 const { Collection } = require('mongodb');
 const PATH_DB = "./src/db/_tasks.json";
 
-this.adapterDatabase = new MongoService();
+const adapterDatabase = new MongoService();
 const collection = 'seguimientos'
 
 class SeguimientoController {
