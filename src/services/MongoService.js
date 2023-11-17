@@ -111,6 +111,31 @@ class MongoService extends IDatabase{
         await client.close();
     }
     }
+
+    async findByFilter(collectionName, filter){
+       
+        const client = getClient() // se captura el cliente
+    try{        
+        await client.connect();  // Nos conectamos 
+        const dbName = config.get('database.name')
+        const database = client.db(dbName)
+        console.log(database)
+        const collection = database.collection(collectionName)
+        // Ejecutar Comandos de insercion, actualizacion etc.
+        // se le pasa un filtro en un json se puede fintrar por cualquier campo que tenga en mongo
+        const rows = await collection.findOne(filter);
+        console.log(rows)
+        return rows
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    }catch(error){
+        console.error(error)
+        throw {success:false,message:'Error Mongo service'}
+    }
+    finally{
+        await client.close();
+    }
+    }
     // para crear solo necesito el nombre de la collection donde se va guardar
     // y la data con la que se va crear que es el payload
     /**

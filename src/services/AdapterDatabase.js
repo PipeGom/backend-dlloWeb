@@ -18,7 +18,9 @@ class IDatabase{
     delete(collectionName,payload,id){
         throw "implementar metodo"
     }
-
+    findByFilter(collectionName,filter){
+        throw "Implementar metodo"
+    }
 }
 
 // exportamos la clase Mongo Service
