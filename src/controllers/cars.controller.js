@@ -79,7 +79,7 @@ class CarsController {
     async getCar(req, res){
         try{
             const id = req.params.id
-            const car = await adapterDatabase.findOne(collection, id);
+            const car = await adapterDatabase.create(collection, id);
 
             
             if (!car){
@@ -153,7 +153,7 @@ class CarsController {
                 ok:true,
                 message:"Auto eliminado", //mensaje que pueda manipularse en el frontend
                 info:{}
-            })
+        })
         // clase 3 de oct min 30:52
             
             

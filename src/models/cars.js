@@ -8,12 +8,12 @@ class Car{
 
     valid(){
         if (!this.id || this.id?.toString().length == 0 ) {  
-            throw {status:400, message:'El id  es obligatorio'};
+            throw ({status:400, message:'El id  es obligatorio'});
     }
         if (!this.name || this.name?.toString().length == 0 ) {  
-            throw {status:400, message:'El name  es obligatorio'};
+            throw ({status:400, message:'El name  es obligatorio'});
     }
-    }
+}
     
 
     toJson(){
