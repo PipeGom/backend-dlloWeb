@@ -80,7 +80,7 @@ class SeguimientoController {
         try{
             const id = req.params.id
 
-            const seguimiento = await adapterDatabase.create(collection, id);
+            const seguimiento = await adapterDatabase.findOne(collection, id);
 
             
             if (!seguimiento){
@@ -88,7 +88,7 @@ class SeguimientoController {
             }
             res.status(200).json({
                 ok: true,
-                message: "seguimientp consultado",
+                message: "seguimiento consultado",
                 info: seguimiento,
             })
 
